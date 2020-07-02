@@ -1,14 +1,14 @@
 # texlive-action
 
-[![GitHub Actions Status](https://github.com/xu-cheng/texlive-action/workflows/Test%20Github%20Action/badge.svg)](https://github.com/xu-cheng/texlive-action/actions)
+This is a fork from [xu-cheng/texlive-action](https://github.com/xu-cheng/texlive-action).
 
 GitHub Action to run arbitrary commands in a [TeXLive](https://www.tug.org/texlive/) environment.
 
-It comes with two flavors, `full` and `small`. The `full` action has all TeXLive packages installed. The `small` one however only has basic packages installed to reduce its size. You can use `tlmgr install <package>` to install the missing packages.
-The base image is [alpine](https://alpinelinux.org). Use `apk add <package>` to install additional system packages.
-See [latex-docker](https://github.com/xu-cheng/latex-docker) for the scripts to build the respective docker images.
+It comes with one flavor, `full`. The `full` action has all TeXLive packages installed.
+The base image is debian.
+See the [dockerfile](https://hub.docker.com/r/svlentink/texlive-full/dockerfile) for the scripts to build the respective docker images.
 
-This action is suitable to run arbitrary commands in a LaTeX environment. If you simply want to compile LaTeX documents, [latex-action](https://github.com/xu-cheng/latex-action) is better recommended.
+This action is suitable to run arbitrary commands in a LaTeX environment.
 
 ## Inputs
 
@@ -25,26 +25,11 @@ This action is suitable to run arbitrary commands in a LaTeX environment. If you
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-        - uses: xu-cheng/texlive-action/full@v1
+        - uses: SadPencil/texlive-action/full@v2
           with:
             run: |
-              apk add make
-              make
-  ```
-
-* Run commands in a **small** TeXLive environment.
-
-  ```yaml
-  on: [push]
-  jobs:
-    build_latex:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: xu-cheng/texlive-action/small@v1
-          with:
-            run: |
-              apk add make
+              apt-get update
+              apt-get install make
               make
   ```
 
