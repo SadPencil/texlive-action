@@ -5,8 +5,8 @@ This is a fork from [xu-cheng/texlive-action](https://github.com/xu-cheng/texliv
 GitHub Action to run arbitrary commands in a [TeXLive](https://www.tug.org/texlive/) environment.
 
 It comes with one flavor, `full`. The `full` action has all TeXLive packages installed.
-The base image is debian.
-See the [dockerfile](https://hub.docker.com/r/svlentink/texlive-full/dockerfile) for the scripts to build the respective docker images.
+The base image is Ubuntu 20.04.
+See the [dockerfile](https://github.com/SadPencil/texlive-full-docker) for the scripts to build the respective docker images.
 
 This action is suitable to run arbitrary commands in a LaTeX environment.
 
@@ -25,7 +25,7 @@ This action is suitable to run arbitrary commands in a LaTeX environment.
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
-        - uses: SadPencil/texlive-action/full@v2
+        - uses: SadPencil/texlive-action/full@v3
           with:
             run: |
               apt-get update
